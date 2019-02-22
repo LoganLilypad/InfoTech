@@ -5,6 +5,10 @@ import json
 
 TOKEN = open("../conf.txt").read().replace("\n", "")
 
+def sendError(m):
+    embed = discord.Embed(title="Error", description=m, color=0xfc4444)
+    await message.channel.send(embed=embed)
+
 client = discord.Client()
 
 @client.event
@@ -23,6 +27,11 @@ async def on_message(message):
         await message.channel.send(embed=embed)
     elif message.content.startswith("!q"):
         msg = message.content.split(" ")
+        if msg[1] == "hardware":
+            
+        else:
+            sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`")
+            
         
 
 @client.event
