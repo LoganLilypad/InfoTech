@@ -7,7 +7,7 @@ TOKEN = open("../conf.txt").read().replace("\n", "")
 
 def sendError(m):
     embed = discord.Embed(title="Error", description=m, color=0xfc4444)
-    await message.channel.send(embed=embed)
+    return embed
 
 client = discord.Client()
 
@@ -30,7 +30,7 @@ async def on_message(message):
         if msg[1] == "hardware":
             
         else:
-            sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`")
+            await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
             
         
 
