@@ -4,7 +4,6 @@ import json
 
 
 TOKEN = open("../conf.txt").read().replace("\n", "")
-print(TOKEN)
 
 client = discord.Client()
 
@@ -28,6 +27,6 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
-    print("I'm ready!!!")
+    print("Ready")
 
 client.run(TOKEN)
