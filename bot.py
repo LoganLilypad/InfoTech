@@ -25,9 +25,9 @@ async def on_message(message):
     elif message.content == "!contribute":
         embed = discord.Embed(title="If you would like to help create this bot, click here:", description="https://github.com/LoganLilypad/InfoTech You will need a Github account to make any changes", color=0x38ff5f)
         await message.channel.send(embed=embed)
-    elif message.content.startswith("!q"):
-        msg = message.content.split(" ")
-        if msg[1] == "hardware":
+    elif "!q" in message.content:
+        msg = message.content.replace("!q", "")
+        if msg == "hardware":
             message.channel.send("Random question")
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
