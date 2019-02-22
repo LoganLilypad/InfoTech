@@ -28,7 +28,7 @@ async def on_message(message):
     elif message.content.startswith("!q"):
         msg = message.content.split(" ")
         if msg[1] == "hardware":
-            
+            message.channel.send("Random question")
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
             
