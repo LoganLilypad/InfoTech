@@ -3,7 +3,7 @@ import discord
 import json
 
 
-TOKEN = open("../conf.txt").read()
+TOKEN = open("../conf.txt").read().replace("\n", "")
 print(TOKEN)
 
 client = discord.Client()
