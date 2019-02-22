@@ -4,6 +4,7 @@ import json
 
 
 TOKEN = open("../conf.txt").read()
+print(TOKEN)
 
 client = discord.Client()
 
