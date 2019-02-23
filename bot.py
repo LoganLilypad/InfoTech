@@ -35,7 +35,7 @@ async def on_message(message):
             a = q[ask][len(q[ask]) - 1]
             qs = q[ask].split("||")
             if len(q[ask]) == 6:
-                await message.channel.send(embed=discord.Embed(title=qs[0], description="**A**" + qs[1] + "**B**" + qs[1] "**C**" + qs[1] "**D**" + qs[1], color=0x609dff))
+                await message.channel.send(embed=discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n" %(qs[1], qs[2], qs[3], qs[4]), color=0x609dff))
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
             
