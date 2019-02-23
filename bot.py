@@ -27,7 +27,7 @@ async def on_message(message):
         embed.add_field(name="!q <type> [number]", value="Asks a random question if [number] is not supplied", inline=True)
         await message.channel.send(embed=embed)
     elif message.content == "!contribute":
-        embed = discord.Embed(title="If you would like to help create this bot, click here:", description="https://github.com/LoganLilypad/InfoTech You will need a Github account to make any changes", color=0x38ff5f)
+        embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif "!q" in message.content:
         global a
