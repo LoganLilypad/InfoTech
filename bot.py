@@ -39,7 +39,6 @@ async def on_message(message):
             else:
                 a = qs[len(qs) - 1]
                 await message.channel.send(embed=discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n**E** %s" %(qs[1], qs[2], qs[3], qs[4], qs[5]), color=0x609dff))
-            await message.channel.send(str(qs))
                 
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
