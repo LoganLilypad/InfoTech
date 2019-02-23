@@ -52,7 +52,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
     elif "!a" in message.content:
         if a != "":
-            msg = msg.replace("!a ", "")
+            msg = message.content.replace("!a ", "")
             if msg[1] == a.lower():
                 await message.channel.send("Correct! <:correct:548988506496696341>")
                 a = ""
