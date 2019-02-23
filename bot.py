@@ -30,6 +30,7 @@ async def on_message(message):
         embed = discord.Embed(title="If you would like to help create this bot, click here:", description="https://github.com/LoganLilypad/InfoTech You will need a Github account to make any changes", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif "!q" in message.content:
+        global a
         if a == "":
             msg = message.content.replace("!q ", "").lower()
             if msg == "g":
