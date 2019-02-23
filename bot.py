@@ -24,7 +24,7 @@ async def on_message(message):
     if message.content.startswith('!help'):
         embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
         embed.add_field(name="!help", value="Shows this menu", inline=True)
-        embed.add_field(name="!q <type> [number]", value="Asks a random question if [number] is not supplied", inline=True)
+        embed.add_field(name="!q <type> [number]", value="Asks a random question of the said category", inline=True)
         await message.channel.send(embed=embed)
     elif message.content == "!contribute":
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech", color=0x38ff5f)
@@ -47,7 +47,7 @@ async def on_message(message):
                     embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
                     await message.channel.send(embed=embed)
             else:
-                await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
+                await message.channel.send(embed=sendError("Usage: `!q <(g)eneral/(h)ardware/(n)etworking/(t)roubleshooting>`"))
         else:
             await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
     elif "!a" in message.content:
