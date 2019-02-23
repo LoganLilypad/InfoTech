@@ -46,19 +46,21 @@ async def on_message(message):
                     embed = discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n**E** %s" %(qs[1], qs[2], qs[3], qs[4], qs[5]), color=0x609dff)
                     embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
                     await message.channel.send(embed=embed)
-            elif "a" in msg:
-                msg = msg.split(" ")
-                if msg[1] == a.lower():
-                    await message.channel.send("Correct! <:correct:548988506496696341>")
-                    a = ""
-                else:
-                    await message.channel.send("Incorrect, the anwer was %s" %a)
-                    a = ""
-                
             else:
                 await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
         else:
             await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
+    elif "!a" in message.content:
+        if a != "":
+            msg = msg.replace("!a ", "")
+            if msg[1] == a.lower():
+                await message.channel.send("Correct! <:correct:548988506496696341>")
+                a = ""
+            else:
+                await message.channel.send("Incorrect, the answer was **%s** <:incorrect:548988506467336192>" %a)
+                a = ""
+        else:
+            await message.channel.send(embed=sendError("There is no question to answer! <:incorrect:548988506467336192>"))
             
         
 
