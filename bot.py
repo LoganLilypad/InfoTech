@@ -53,14 +53,14 @@ async def on_message(message):
     elif "!a" in message.content:
         if a != "":
             msg = message.content.replace("!a ", "")
-            if msg[1] == a.lower():
-                await message.channel.send("Correct! <:correct:548988506496696341>")
+            if msg == a.lower():
+                await message.channel.send("<:correct:548988506496696341> Correct!")
                 a = ""
             else:
-                await message.channel.send("Incorrect, the answer was **%s** <:incorrect:548988506467336192>" %a)
+                await message.channel.send(":x: Incorrect, the answer was **%s**" %a)
                 a = ""
         else:
-            await message.channel.send(embed=sendError("There is no question to answer! <:incorrect:548988506467336192>"))
+            await message.channel.send(embed=sendError(":x: There is no question to answer!"))
             
         
 
