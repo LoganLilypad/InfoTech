@@ -7,6 +7,7 @@ import json
 TOKEN = open("../conf.txt").read().replace("\n", "")
 
 q = open("General.txt", "r").read().split("\n")
+a = ""
 
 def sendError(m):
     embed = discord.Embed(title="Error", description=m, color=0xfc4444)
@@ -29,23 +30,34 @@ async def on_message(message):
         embed = discord.Embed(title="If you would like to help create this bot, click here:", description="https://github.com/LoganLilypad/InfoTech You will need a Github account to make any changes", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif "!q" in message.content:
-        msg = message.content.replace("!q ", "").lower()
-        if msg == "g":
-            ask = rand(0, len(q))
-            qs = q[ask].split("||")
-            if len(qs) == 6:
-                a = qs[len(qs) - 1]
-                embed = discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n" %(qs[1], qs[2], qs[3], qs[4]), color=0x609dff)
-                embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
-                await message.channel.send(embed=embed)
-            else:
-                a = qs[len(qs) - 1]
-                discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n**E** %s" %(qs[1], qs[2], qs[3], qs[4], qs[5]), color=0x609dff)
-                embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
-                await message.channel.send(embed=embed)
+        if a == "":
+            msg = message.content.replace("!q ", "").lower()
+            if msg == "g":
+                ask = rand(0, len(q))
+                qs = q[ask].split("||")
+                if len(qs) == 6:
+                    a = qs[len(qs) - 1]
+                    embed = discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n" %(qs[1], qs[2], qs[3], qs[4]), color=0x609dff)
+                    embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
+                    await message.channel.send(embed=embed)
+                else:
+                    a = qs[len(qs) - 1]
+                    discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n**E** %s" %(qs[1], qs[2], qs[3], qs[4], qs[5]), color=0x609dff)
+                    embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
+                    await message.channel.send(embed=embed)
+            elif "a" in msg:
+                msg = msg.split(" ")
+                if msg[1] == a.lower():
+                    await message.channel.send("Correct! <:correct:548988506496696341>")
+                    a = ""
+                else:
+                    await message.channel.send("Incorrect, the anwer was %s" %a)
+                    a = ""
                 
+            else:
+                await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
         else:
-            await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
+            await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
             
         
 
