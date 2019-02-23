@@ -1,9 +1,12 @@
 import requests
+from random import randint as rand
 import discord
 import json
 
 
 TOKEN = open("../conf.txt").read().replace("\n", "")
+
+q = open("General.txt", "r").read().split("\n")
 
 def sendError(m):
     embed = discord.Embed(title="Error", description=m, color=0xfc4444)
@@ -26,9 +29,11 @@ async def on_message(message):
         embed = discord.Embed(title="If you would like to help create this bot, click here:", description="https://github.com/LoganLilypad/InfoTech You will need a Github account to make any changes", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif "!q" in message.content:
-        msg = message.content.replace("!q", "")
-        if msg == "hardware":
-            message.channel.send("Random question")
+        msg = message.content.replace("!q", "").lower()
+        if msg == "g":
+            ask = rand(0, len(q))
+            a = q[ask][len(q[ask]) - 1]
+            await message.channel.send(embed=discord.Embed(title=q[ask], description=str(q[ask])), color=0x609dff)
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
             
