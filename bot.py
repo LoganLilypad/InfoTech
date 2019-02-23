@@ -33,7 +33,7 @@ async def on_message(message):
         if msg == "g":
             ask = rand(0, len(q))
             qs = q[ask].split("||")
-            if len(q[ask]) == 6:
+            if len(qs) == 6:
                 a = qs[len(qs) - 1]
                 await message.channel.send(embed=discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n" %(qs[1], qs[2], qs[3], qs[4]), color=0x609dff))
             else:
