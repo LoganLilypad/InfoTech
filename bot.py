@@ -33,7 +33,9 @@ async def on_message(message):
         if msg == "g":
             ask = rand(0, len(q))
             a = q[ask][len(q[ask]) - 1]
-            await message.channel.send(embed=discord.Embed(title=q[ask][0], description=str(q[ask]), color=0x609dff))
+            qs = q[ask].split("||")
+            if len(q[ask]) == 6:
+                await message.channel.send(embed=discord.Embed(title=qs[0], description="**A**" + qs[1] + "**B**" + qs[1] "**C**" + qs[1] "**D**" + qs[1], color=0x609dff))
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
             
