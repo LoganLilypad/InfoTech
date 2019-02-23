@@ -53,7 +53,7 @@ async def on_message(message):
     elif "!a" in message.content:
         if a != "":
             msg = message.content.replace("!a ", "")
-            if msg == a.lower():
+            if msg.lower() == a.lower():
                 await message.channel.send("<:correct:548988506496696341> Correct!")
                 a = ""
             else:
