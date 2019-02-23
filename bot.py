@@ -33,8 +33,7 @@ async def on_message(message):
         if msg == "g":
             ask = rand(0, len(q))
             a = q[ask][len(q[ask]) - 1]
-            embed = discord.Embed(title=q[ask], description=str(q[ask])), color=0x609dff)
-            await message.channel.send(embed=embed)
+            await message.channel.send(embed=discord.Embed(title=q[ask], description=str(q[ask]), color=0x609dff))
         else:
             await message.channel.send(embed=sendError("Usage: `!q <hardware/networking/mobdev/trbsht>`"))
             
