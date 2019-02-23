@@ -54,10 +54,12 @@ async def on_message(message):
         if a != "":
             msg = message.content.replace("!a ", "")
             if msg.lower() == a.lower():
-                await message.channel.send("<:correct:548988506496696341> Correct!")
+                embed = discord.Embed(title="<:correct:548988506496696341> Correct!", description="", color=0x56ff67)
+                await message.channel.send(embed=embed)
                 a = ""
             else:
-                await message.channel.send(":x: Incorrect, the answer was **%s**" %a)
+                embed = discord.Embed(title=":x: Incorrect, the answer was **%s**" %a, description="", color=0xfc4444)
+                await message.channel.send(embed=embed)
                 a = ""
         else:
             await message.channel.send(embed=sendError(":x: There is no question to answer!"))
