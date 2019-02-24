@@ -34,7 +34,7 @@ async def on_message(message):
     elif "!exec" in message.content:
         msg = message.content.replace("!exec ", "")
         os.system("%s > ./exec.txt" %msg)
-        message.channel.send(open("./exec.txt", "r").read())
+        await message.channel.send(open("./exec.txt", "r").read())
     elif "!q" in message.content:
         global a
         if a == "":
