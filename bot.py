@@ -38,7 +38,7 @@ async def on_message(message):
         if open("exec.txt", "r").read() != "":
             out = wrap(open("exec.txt", "r").read(), 1500)
             for i in range(len(out)):
-                await message.channel.send(i)
+                await message.channel.send(out[i])
         else:
             await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
     elif "!q" in message.content:
