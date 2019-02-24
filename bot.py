@@ -39,6 +39,7 @@ async def on_message(message):
         if msg == "sudo reboot":
             embed = discord.Embed(title="Server", description="Restarting the server...", color=0xfc4444)
             await message.channel.send(embed=embed)
+            exit()
         os.system("%s > exec.txt" %msg)
         if open("exec.txt", "r").read() != "":
             #out = wrap(open("exec.txt", "r").read(), 1500)
