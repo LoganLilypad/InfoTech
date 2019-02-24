@@ -3,6 +3,7 @@ from random import randint as rand
 import os
 import discord
 import json
+from textwrap import wrap
 
 
 TOKEN = open("../conf.txt").read().replace("\n", "")
@@ -35,7 +36,9 @@ async def on_message(message):
         msg = message.content.replace("!exec ", "")
         os.system("%s > exec.txt" %msg)
         if open("exec.txt", "r").read() != "":
-            await message.channel.send(open("exec.txt", "r").read())
+            out = wrap(open("exec.txt", "r").read(), 1500)
+            for i in range(len(out)):
+                await message.channel.send(i)
         else:
             await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
     elif "!q" in message.content:
