@@ -26,7 +26,7 @@ async def on_message(message):
     if message.content.startswith('!help'):
         embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
         embed.add_field(name="!help", value="Shows this menu", inline=True)
-        embed.add_field(name="!q <type> [number]", value="Asks a random question of the said category", inline=True)
+        embed.add_field(name="!q <type>", value="Asks a random question of the said category", inline=True)
         embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=True)
         await message.channel.send(embed=embed)
     elif message.content == "!contribute":
@@ -58,6 +58,16 @@ async def on_message(message):
                     embed = discord.Embed(title=qs[0], description="**A** %s\n**B** %s\n**C** %s\n**D** %s\n**E** %s" %(qs[1], qs[2], qs[3], qs[4], qs[5]), color=0x609dff)
                     embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
                     await message.channel.send(embed=embed)
+            elif msg == "h":
+                await message.channel.send(embed=sendError("There are no questions available for hardware yet. Maybe you could add some?"))
+            elif msg == "n":
+                t = rand(0, 2)
+                if t == 0:
+                    q = open("Ports.txt", "r").read().split("\n")
+                    rq = q[rand(0, len(q) + 1)]
+                    await message.channel.send(str(rq))
+            elif msg == "t":
+                await message.channel.send(embed=sendError("There are no questions available for troubleshooting yet. Maybe you could add some?"))
             else:
                 await message.channel.send(embed=sendError("Usage: `!q <(g)eneral/(h)ardware/(n)etworking/(t)roubleshooting>`"))
         else:
