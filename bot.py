@@ -1,5 +1,6 @@
 import requests
 from random import randint as rand
+import os
 import discord
 import json
 
@@ -25,10 +26,15 @@ async def on_message(message):
         embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
         embed.add_field(name="!help", value="Shows this menu", inline=True)
         embed.add_field(name="!q <type> [number]", value="Asks a random question of the said category", inline=True)
+        embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=True)
         await message.channel.send(embed=embed)
     elif message.content == "!contribute":
-        embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech", color=0x38ff5f)
+        embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
+    elif "!exec" in message.content:
+        msg = message.content.replace("!exec ", "")
+        os.system("%s > ./exec.txt" %msg)
+        message.channel.send(open("./exec.txt", "r").read())
     elif "!q" in message.content:
         global a
         if a == "":
