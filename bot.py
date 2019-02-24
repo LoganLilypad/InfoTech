@@ -48,7 +48,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
         else:
             t = rand(0, 11)
-            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=8lPi3fyB5ygLepOHfeoHJz05pIPY5q8N&s=%s&weirdness=%s" %(msg.replace(" ", "+"), t))
+            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(json.loads(open("../config.json").read().replace("\n", ""))["bot_token"], msg.replace(" ", "+"), t))
             data = json.loads(r.text)
             embed = discord.Embed()
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
