@@ -64,8 +64,8 @@ async def on_message(message):
             elif msg == "n":
                 t = rand(0, 2)
                 if t == 0:
-                    q = open("Ports.txt", "r").read().split("\n")
-                    rq = q[rand(0, len(q) + 1)]
+                    cq = open("Ports.txt", "r").read().split("\n")
+                    rq = cq[rand(0, len(q) + 1)]
                     await message.channel.send(str(rq))
             elif msg == "t":
                 await message.channel.send(embed=sendError("There are no questions available for troubleshooting yet. Maybe you could add some?"))
