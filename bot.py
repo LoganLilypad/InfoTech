@@ -43,6 +43,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
     elif "!q" in message.content:
         global a
+        global q
         if a == "":
             msg = message.content.replace("!q ", "").lower()
             if msg == "g":
