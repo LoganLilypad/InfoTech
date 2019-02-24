@@ -6,7 +6,7 @@ import json
 from textwrap import wrap
 
 
-TOKEN = open("../conf.txt").read().replace("\n", "")
+TOKEN = json.loads(open("../config.json").read().replace("\n", ""))["bot_token"]
 
 q = open("General.txt", "r").read().split("\n")
 a = ""
