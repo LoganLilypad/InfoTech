@@ -71,10 +71,12 @@ async def on_message(message):
                     if t == 0:
                         embed = discord.Embed(title="What port is dedicated to **%s**?" %rq[1], description="", color=0x609dff)
                         embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
+                        await message.channel.send(embed=embed)
                         a = rq[0]
                     else:
                         embed = discord.Embed(title="What protocol is dedicated to the port **%s**?" %rq[0], description="", color=0x609dff)
                         embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
+                        await message.channel.send(embed=embed)
                         a = rq[1]
             elif msg == "t":
                 await message.channel.send(embed=sendError("There are no questions available for troubleshooting yet. Maybe you could add some?"))
