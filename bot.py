@@ -42,6 +42,16 @@ async def on_message(message):
             await message.channel.send(open("exec.txt", "r").read())
         else:
             await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
+    elif "!gif" in message.content:
+        msg = message.content.replace("!gif", "")
+        if msg == "":
+            await message.channel.send(embed=sendError("You need to define some text to use this!"))
+        else:
+            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=8lPi3fyB5ygLepOHfeoHJz05pIPY5q8N&s=%s&weirdness=5" %msg.replace(" ", "+"))
+            json = json.loads(r.text)
+            embed = discord.Embed()
+            embed.set_image(url=json["data"]["images"]["downsized_large"]["url"])
+            await message.channel.send(embed=embed)
     elif "!q" in message.content:
         global a
         global q
