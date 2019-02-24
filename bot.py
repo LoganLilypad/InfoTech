@@ -27,6 +27,8 @@ async def on_message(message):
         embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
         embed.add_field(name="!help", value="Shows this menu", inline=True)
         embed.add_field(name="!q <type>", value="Asks a random question of the said category", inline=True)
+        embed.add_field(name="!a <answer>", value="Answer a question (case does not matter)", inline=True)
+        embed.add_field(name="!gif <query>", value="Search for a gif", inline=True)
         embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=True)
         await message.channel.send(embed=embed)
     elif message.content == "!contribute":
