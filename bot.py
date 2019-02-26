@@ -85,7 +85,7 @@ async def on_message(message):
             embed.set_image(url=data["data"]["items"][t]["images"][0]["link"])
             await message.channel.send(embed=embed)
     elif message.content.startswith("!insult"):
-        msg = message.content.replace("!insult", "")
+        msg = message.content.replace("!insult ", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define the amount of insults to generate!"))
         else:
@@ -98,6 +98,8 @@ async def on_message(message):
                     out += "%s\n" %r.text
                 embed = discord.Embed(title="Insults:" %msg, description="%s" %out, color=0x38ff5f)
                 await message.channel.send(embed=embed)
+            else:
+                await message.channel.send(embed=sendError("Insult count must be less than 26!")
             
 #End of useless commands -- start of the good stuff
             
