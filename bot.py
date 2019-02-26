@@ -74,7 +74,7 @@ async def on_message(message):
         else:
             r = requests.get("https://api.imgur.com/3/gallery/t/%s" %msg.replace(" ", "%20"), headers={"Authorization":"Client-ID %s" %TOKEN_IMGUR})
             data = json.loads(r.text)
-            t = rand(0, data["data"]["items"])
+            t = rand(0, len(data["data"]["items"]))
             embed = discord.Embed()
             embed.set_image(url=data["data"]["items"][t]["link"])
             await message.channel.send(embed=embed)
