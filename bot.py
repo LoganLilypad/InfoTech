@@ -76,7 +76,7 @@ async def on_message(message):
             data = json.loads(r.text)
             t = rand(0, len(data["data"]["items"]))
             embed = discord.Embed()
-            embed.set_image(url=data["data"]["items"][t]["link"])
+            embed.set_image(url="https://i.imgur.com/%s.png" %data["data"]["items"][t]["id"])
             await message.channel.send(embed=embed)
     elif message.content.startswith("!q"):
         global a
