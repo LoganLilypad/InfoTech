@@ -41,7 +41,7 @@ async def on_message(message):
     elif message.content.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
-    elif "!exec" in message.content:
+    elif message.content.startswith("!exec"):
         msg = message.content.replace("!exec", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!exec <Linux command>`"))
@@ -54,7 +54,7 @@ async def on_message(message):
                 await message.channel.send(open("exec.txt", "r").read())
             else:
                 await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
-    elif "!gif" in message.content:
+    elif message.content.startswith("!gif"):
         msg = message.content.replace("!gif", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
@@ -65,7 +65,7 @@ async def on_message(message):
             embed = discord.Embed()
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
             await message.channel.send(embed=embed)
-    elif "!q" in message.content:
+    elif message.content.startswith("!q"):
         global a
         global q
         if a == "":
@@ -108,7 +108,7 @@ async def on_message(message):
                 await message.channel.send(embed=sendError("Usage: `!q <(g)eneral/(h)ardware/(n)etworking/(t)roubleshooting>`"))
         else:
             await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
-    elif "!a" in message.content:
+    elif message.content.startswith("!a"):
         if a != "":
             msg = message.content.replace("!a ", "")
             if msg.lower() == a.lower():
