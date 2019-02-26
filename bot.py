@@ -29,9 +29,16 @@ async def on_message(message):
         embed.add_field(name="!q <type>", value="Asks a random question of the said category", inline=True)
         embed.add_field(name="!a <answer>", value="Answer a question (case does not matter)", inline=True)
         embed.add_field(name="!gif <query>", value="Search for a gif", inline=True)
+        embed.add_field(name="!del <message ID>", value="Deletes a message by ID", inline=True)
         embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=True)
         await message.channel.send(embed=embed)
-    elif message.content == "!contribute":
+    elif message.content.startswith("!del"):
+        msg = message.content.replace("!del", "")
+        if msg == "":
+            await message.channel.send(embed=sendError("Usage: `!del <message ID>`"))
+        else:
+            r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
+    elif message.content.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif "!exec" in message.content:
