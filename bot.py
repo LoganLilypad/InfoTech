@@ -39,7 +39,11 @@ async def on_message(message):
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!del <message ID>`"))
         else:
+            await message.channel.send(message.id)
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
+    
+#Start of the useless/fun commands for no reason
+    
     elif message.content.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
@@ -78,6 +82,9 @@ async def on_message(message):
             embed = discord.Embed()
             embed.set_image(url=data["data"]["items"][t]["images"][0]["link"])
             await message.channel.send(embed=embed)
+            
+#End of useless commands -- start of the good stuff
+            
     elif message.content.startswith("!q"):
         global a
         global q
