@@ -7,6 +7,8 @@ from textwrap import wrap
 
 
 TOKEN = json.loads(open("../config.json").read().replace("\n", ""))["bot_token"]
+TOKEN_GIPHY = json.loads(open("../config.json").read().replace("\n", ""))["giphy_token"]
+TOKEN_IMGUR = json.loads(open("../config.json").read().replace("\n", ""))["imgur_token"]
 
 q = open("General.txt", "r").read().split("\n")
 a = ""
@@ -60,10 +62,21 @@ async def on_message(message):
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
         else:
             t = rand(0, 11)
-            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(json.loads(open("../config.json").read().replace("\n", ""))["giphy_token"], msg.replace(" ", "+"), t))
+            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(TOKEN_GIPHY, msg.replace(" ", "+"), t))
             data = json.loads(r.text)
             embed = discord.Embed()
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
+            await message.channel.send(embed=embed)
+    elif message.content.startswith("!img"):
+        msg = message.content.replace("!gif", "")
+        if msg == "":
+            await message.channel.send(embed=sendError("You need to define some text to use this!"))
+        else:
+            r = requests.get("https://api.imgur.com/3/gallery/t/%s" %msg.replace(" ", "%20"), headers={"Authorization":"Client-ID %s" %TOKEN_IMGUR})
+            data = json.loads(r.text)
+            t = rand(0, data["data"]["items"])
+            embed = discord.Embed()
+            embed.set_image(url=data["data"]["items"][0]["link"])
             await message.channel.send(embed=embed)
     elif message.content.startswith("!q"):
         global a
