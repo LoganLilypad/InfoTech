@@ -25,7 +25,6 @@ async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
-
     if message.content.startswith('!help'):
         embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
         embed.add_field(name="!help", value="Shows this menu", inline=True)
@@ -43,9 +42,6 @@ async def on_message(message):
         else:
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %message.id, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
-    
-
-    
     elif message.content.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
@@ -101,9 +97,6 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 await message.channel.send(embed=sendError("Insult count must be less than 26!")
-                                           
-                                           
-                                           
     elif message.content.startswith("!q"):
         global a
         global q
