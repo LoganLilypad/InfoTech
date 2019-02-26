@@ -3,6 +3,7 @@ from random import randint as rand
 import os
 import discord
 import json
+from time import sleep
 from textwrap import wrap
 
 
@@ -30,7 +31,8 @@ async def on_message(message):
         embed.add_field(name="!help", value="Shows this menu", inline=True)
         embed.add_field(name="!q <type>", value="Asks a random question of the said category", inline=True)
         embed.add_field(name="!a <answer>", value="Answer a question (case does not matter)", inline=True)
-        embed.add_field(name="!gif <query>", value="Search for a gif", inline=True)
+        embed.add_field(name="!gif <query>", value="Search for a gif from Giphy", inline=True)
+        embed.add_field(name="!img <query>", value="Search for an image from Imgur", inline=True)
         embed.add_field(name="!del <message ID>", value="Deletes a message by ID", inline=True)
         embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=True)
         await message.channel.send(embed=embed)
@@ -82,6 +84,20 @@ async def on_message(message):
             embed = discord.Embed()
             embed.set_image(url=data["data"]["items"][t]["images"][0]["link"])
             await message.channel.send(embed=embed)
+    elif message.content.startswith("!insult"):
+        msg = message.content.replace("!insult", "")
+        if msg == "":
+            await message.channel.send(embed=sendError("You need to define the amount of insults to generate!"))
+        else:
+            if int(msg) <= 25:
+                embed = discord.Embed(title="Generating %s insult(s)..." %msg, description="", color=0x609dff)
+                await message.channel.send(embed=embed)
+                out = ""
+                for i in range(int(msg)):
+                    r = requests.get("https://insult.mattbas.org/api/insult")
+                    out += "%s\n" %r.text
+                embed = discord.Embed(title="Insults:" %msg, description="%s" %out, color=0x38ff5f)
+                await message.channel.send(embed=embed)
             
 #End of useless commands -- start of the good stuff
             
