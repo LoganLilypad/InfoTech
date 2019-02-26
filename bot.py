@@ -44,7 +44,7 @@ async def on_message(message):
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %message.id, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
     
-#Start of the useless/fun commands for no reason
+
     
     elif message.content.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
@@ -102,7 +102,7 @@ async def on_message(message):
             else:
                 await message.channel.send(embed=sendError("Insult count must be less than 26!")
             
-#End of useless commands -- start of the good stuff
+
             
     elif message.content.startswith("!q"):
         global a
