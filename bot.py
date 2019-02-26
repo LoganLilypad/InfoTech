@@ -39,7 +39,7 @@ async def on_message(message):
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!del <message ID>`"))
         else:
-            await message.channel.send(message.id)
+            r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %message.id, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
     
 #Start of the useless/fun commands for no reason
