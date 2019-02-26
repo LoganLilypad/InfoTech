@@ -97,6 +97,7 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 await message.channel.send(embed=sendError("Insult count must be less than 26!")
+    #Start of useful commands
     elif message.content.startswith("!q"):
         global a
         global q
