@@ -94,6 +94,7 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
                 out = ""
                 for i in range(int(msg)):
+                    print("Yes")
                     r = requests.get("https://insult.mattbas.org/api/insult")
                     out += "%s\n" %r.text
                 embed = discord.Embed(title="Insults:" %msg, description="%s" %out, color=0x38ff5f)
