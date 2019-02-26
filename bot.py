@@ -68,7 +68,7 @@ async def on_message(message):
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
             await message.channel.send(embed=embed)
     elif message.content.startswith("!img"):
-        msg = message.content.replace("!gif", "")
+        msg = message.content.replace("!img", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
         else:
