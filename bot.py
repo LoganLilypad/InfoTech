@@ -56,7 +56,7 @@ async def on_message(message):
             else:
                 r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"nick":"%s" %str(msg[0])}))
                 if r == "{\"code\": 50013, \"message\": \"Missing Permissions\"}":
-                    embed = discord.Embed(title=":x: Looks like I don't have permission :shrug:" %a, description="", color=0xfc4444)
+                    embed = discord.Embed(title=":x: Looks like I don't have permission :shrug:", description="", color=0xfc4444)
                     await message.channel.send(embed=embed)
                 else:
                     embed = discord.Embed(title="<:correct:548988506496696341> Nickname set", description="", color=0x56ff67)
