@@ -46,7 +46,7 @@ async def on_message(message):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif message.content.startswith("!role"):
-        msg = msg.content.replace("!role", "")
+        msg = message.content.replace("!role", "")
         if msg == "":
             await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
