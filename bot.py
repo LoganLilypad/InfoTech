@@ -51,6 +51,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
             msg = msg.split(" ")
+            await message.channel.send("%s" %msg)
             if len(msg) < 2:
                 await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
             else:
@@ -60,7 +61,7 @@ async def on_message(message):
                     await message.channel.send(embed=embed)
                 else:
                     embed = discord.Embed(title="<:correct:548988506496696341> Nickname set", description="", color=0x56ff67)
-                await message.channel.send(embed=embed)
+                    await message.channel.send(embed=embed)
                 await message.channel.send(r.text)
                 await message.channel.send("%s" %str(msg[0]))
     
