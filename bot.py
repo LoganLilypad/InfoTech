@@ -6,10 +6,11 @@ import json
 from time import sleep
 from textwrap import wrap
 
+config = json.loads(open("../config.json").read().replace("\n", ""))
 
-TOKEN = json.loads(open("../config.json").read().replace("\n", ""))["bot_token"]
-TOKEN_GIPHY = json.loads(open("../config.json").read().replace("\n", ""))["giphy_token"]
-TOKEN_IMGUR = json.loads(open("../config.json").read().replace("\n", ""))["imgur_token"]
+TOKEN = config["bot_token"]
+TOKEN_GIPHY = config["giphy_token"]
+TOKEN_IMGUR = config["imgur_token"]
 
 q = open("General.txt", "r").read().split("\n")
 a = ""
