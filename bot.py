@@ -51,11 +51,10 @@ async def on_message(message):
             await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
             msg = msg.split(" ")
-            await message.channel.send("%s" %msg)
             if len(msg) < 2:
                 await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
             else:
-                r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"nick":"%s" %str(msg[0])}))
+                r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"nick":msg[1]}))
                 if "Missing Permissions" in r.text:
                     embed = discord.Embed(title=":x: Looks like I don't have permission :shrug:", description="", color=0xfc4444)
                     await message.channel.send(embed=embed)
@@ -63,7 +62,6 @@ async def on_message(message):
                     embed = discord.Embed(title="<:correct:548988506496696341> Nickname set", description="", color=0x56ff67)
                     await message.channel.send(embed=embed)
                 await message.channel.send(r.text)
-                await message.channel.send("%s" %str(msg[0]))
     
     #Start of the useless commands
     
