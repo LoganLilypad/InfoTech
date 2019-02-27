@@ -61,7 +61,6 @@ async def on_message(message):
                 else:
                     embed = discord.Embed(title="<:correct:548988506496696341> Nickname set", description="", color=0x56ff67)
                     await message.channel.send(embed=embed)
-                await message.channel.send(r.text)
     
     #Start of the useless commands
     
