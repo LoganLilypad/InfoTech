@@ -96,7 +96,7 @@ async def on_message(message):
                 embed = discord.Embed(title="Insults:" %msg, description="%s" %out, color=0x38ff5f)
                 await message.channel.send(embed=embed)
             else:
-                await message.channel.send(embed=sendError("Insult count must be less than 26!")
+                await message.channel.send(embed=sendError("Insult count must be less than 26!"))
     elif message.content.startswith("!q"):
         global a
         global q
