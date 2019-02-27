@@ -63,7 +63,7 @@ async def on_message(message):
                 if "Missing Permissions" in r.text:
                     embed = discord.Embed(title=":x: Looks like I don't have permission to change your nickname :shrug:", description="", color=0xfc4444)
                     await message.channel.send(embed=embed)
-                elif "Missing Permissions" in r2.text:
+                if "Missing Permissions" in r2.text:
                     embed = discord.Embed(title=":x: Looks like I don't have permission to change your role :shrug:", description="", color=0xfc4444)
                     await message.channel.send(embed=embed)
                 else:
