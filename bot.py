@@ -93,7 +93,7 @@ async def on_message(message):
                 for i in range(int(msg)):
                     print("Yes")
                     r = requests.get("https://evilinsult.com/generate_insult.php?lang=en&type=text")
-                    out += "%s\n" %r.text
+                    out += "%s\n\n" %r.text
                 embed = discord.Embed(title="Insults: ", description="%s" %out, color=0x38ff5f)
                 await message.channel.send(embed=embed)
             else:
