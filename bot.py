@@ -48,7 +48,7 @@ async def on_message(message):
     elif message.content.startswith("!role"):
         msg = message.content.replace("!role", "")
         if msg == "":
-            await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
+            await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
             msg = msg.split(" ")
             if len(msg) < 2:
