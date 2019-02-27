@@ -23,7 +23,6 @@ client = discord.Client()
 
 @client.event
 async def on_message(message):
-    # we do not want the bot to reply to itself
     if message.author == client.user:
         return
     if message.content.startswith('!help'):
@@ -46,6 +45,21 @@ async def on_message(message):
     elif message.content.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
+    elif message.content.startswith("!role"):
+        msg = msg.replace("!role", "")
+        if msg == "":
+            await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
+        else:
+            msg = msg.split(" ")
+            if len(msg) < 2:
+                await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
+            else:
+                r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild, message.author.id), headers={"Authorization":"Bot %s" %TOKEN}, data=json.dumps({"nick":msg[0]}))
+                embed = discord.Embed(title="<:correct:548988506496696341> Nickname set", description="", color=0x56ff67)
+                await message.channel.send(embed=embed)
+    
+    #Start of the useless commands
+    
     elif message.content.startswith("!exec"):
         msg = message.content.replace("!exec", "")
         if msg == "":
@@ -98,6 +112,9 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 await message.channel.send(embed=sendError("Insult count must be less than or equal to 10!"))
+    
+    #End of the useless commands, start of the useful commands
+    
     elif message.content.startswith("!q"):
         global a
         global q
