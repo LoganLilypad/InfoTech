@@ -51,7 +51,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
             msg = msg.split(" ")
-            if len(msg) < 2:
+            if len(msg) < 2 and msg[2] == "1" or msg[2] == "3":
                 await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
             else:
                 r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"nick":msg[1]}))
