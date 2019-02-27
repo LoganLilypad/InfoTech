@@ -93,7 +93,7 @@ async def on_message(message):
                     print("Yes")
                     r = requests.get("https://insult.mattbas.org/api/insult")
                     out += "%s\n" %r.text
-                embed = discord.Embed(title="Insults:" %msg, description="%s" %out, color=0x38ff5f)
+                embed = discord.Embed(title="Insults: ", description="%s" %out, color=0x38ff5f)
                 await message.channel.send(embed=embed)
             else:
                 await message.channel.send(embed=sendError("Insult count must be less than or equal to 10!"))
