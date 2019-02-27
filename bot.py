@@ -85,7 +85,7 @@ async def on_message(message):
         if msg == "":
             await message.channel.send(embed=sendError("You need to define the amount of insults to generate!"))
         else:
-            if int(msg) <= 25:
+            if int(msg) <= 10:
                 embed = discord.Embed(title="Generating %s insult(s)..." %msg, description="", color=0x609dff)
                 await message.channel.send(embed=embed)
                 out = ""
@@ -96,7 +96,7 @@ async def on_message(message):
                 embed = discord.Embed(title="Insults:" %msg, description="%s" %out, color=0x38ff5f)
                 await message.channel.send(embed=embed)
             else:
-                await message.channel.send(embed=sendError("Insult count must be less than 26!"))
+                await message.channel.send(embed=sendError("Insult count must be less than or equal to 10!"))
     elif message.content.startswith("!q"):
         global a
         global q
