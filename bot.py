@@ -25,7 +25,8 @@ client = discord.Client()
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('!help'):
+    msg = message.content
+    if msg.startswith('!help'):
         embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
         embed.add_field(name="!help", value="Shows this menu", inline=False)
         embed.add_field(name="!role <name> <session (1/3)>", value="Setup your name and session so you can talk in the Discord", inline=False)
@@ -36,18 +37,18 @@ async def on_message(message):
         embed.add_field(name="!del <message ID>", value="Deletes a message by ID", inline=False)
         embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=False)
         await message.channel.send(embed=embed)
-    elif message.content.startswith("!del"):
-        msg = message.content.replace("!del", "")
+    elif msg.startswith("!del"):
+        msg.replace("!del", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!del <message ID>`"))
         else:
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %message.id, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
             r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
-    elif message.content.startswith("!contribute"):
+    elif msg.startswith("!contribute"):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
-    elif message.content.startswith("!role"):
-        msg = message.content.replace("!role", "")
+    elif msg.startswith("!role"):
+        msg.replace("!role", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
@@ -74,8 +75,8 @@ async def on_message(message):
     
     #Start of the useless commands
     
-    elif message.content.startswith("!exec"):
-        msg = message.content.replace("!exec", "")
+    elif msg.startswith("!exec"):
+        msg.replace("!exec", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!exec <Linux command>`"))
         else:
@@ -87,10 +88,10 @@ async def on_message(message):
                 await message.channel.send(open("exec.txt", "r").read())
             else:
                 await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
-    elif message.content.startswith("!gif"):
-        msg = message.content.replace("!gif", "")
+    elif msg.startswith("!gif"):
+        msg.replace("!gif", "")
         if msg == "":
-            await message.channel.send(embed=sendError("You need to define some text to use this!"))
+            await message.channel.send(embed=sendError("You need to define a search query!"))
         else:
             t = rand(0, 11)
             r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(TOKEN_GIPHY, msg.replace(" ", "+"), t))
@@ -98,8 +99,8 @@ async def on_message(message):
             embed = discord.Embed()
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
             await message.channel.send(embed=embed)
-    elif message.content.startswith("!img"):
-        msg = message.content.replace("!img", "")
+    elif msg.startswith("!img"):
+        msg.replace("!img", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
         else:
@@ -109,8 +110,8 @@ async def on_message(message):
             embed = discord.Embed()
             embed.set_image(url=data["data"]["items"][t]["images"][0]["link"])
             await message.channel.send(embed=embed)
-    elif message.content.startswith("!insult"):
-        msg = message.content.replace("!insult", "")
+    elif msg.startswith("!insult"):
+        msg.replace("!insult", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define the amount of insults to generate!"))
         else:
@@ -129,11 +130,11 @@ async def on_message(message):
     
     #End of the useless commands, start of the useful commands
     
-    elif message.content.startswith("!q"):
+    elif msg.startswith("!q"):
         global a
         global q
         if a == "":
-            msg = message.content.replace("!q ", "").lower()
+            msg.replace("!q ", "").lower()
             if msg == "g":
                 ask = rand(0, len(q))
                 qs = q[ask].split("||")
@@ -172,9 +173,9 @@ async def on_message(message):
                 await message.channel.send(embed=sendError("Usage: `!q <(g)eneral/(h)ardware/(n)etworking/(t)roubleshooting>`"))
         else:
             await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
-    elif message.content.startswith("!a"):
+    elif msg.startswith("!a"):
         if a != "":
-            msg = message.content.replace("!a ", "")
+            msg.replace("!a ", "")
             if msg.lower() == a.lower():
                 embed = discord.Embed(title="<:correct:548988506496696341> Correct!", description="", color=0x56ff67)
                 await message.channel.send(embed=embed)
