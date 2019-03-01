@@ -6,7 +6,7 @@ import json
 from time import sleep
 from textwrap import wrap
 
-config = json.loads(open("../config.json").read().replace("\n", ""))
+config = json.loads(open("../config.json").read())
 
 TOKEN = config["bot_token"]
 TOKEN_GIPHY = config["giphy_token"]
