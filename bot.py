@@ -104,7 +104,7 @@ async def on_message(message):
         if msg == "":
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
         else:
-            r = requests.get("https://api.imgur.com/3/gallery/t/%s" %msg = msg.replace(" ", "%20"), headers={"Authorization":"Client-ID %s" %TOKEN_IMGUR})
+            r = requests.get("https://api.imgur.com/3/gallery/t/%s" %msg.replace(" ", "%20"), headers={"Authorization":"Client-ID %s" %TOKEN_IMGUR})
             data = json.loads(r.text)
             t = rand(0, len(data["data"]["items"]))
             embed = discord.Embed()
