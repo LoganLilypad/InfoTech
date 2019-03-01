@@ -38,7 +38,7 @@ async def on_message(message):
         embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=False)
         await message.channel.send(embed=embed)
     elif msg.startswith("!del"):
-        msg.replace("!del", "")
+        msg = msg.replace("!del", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!del <message ID>`"))
         else:
@@ -48,7 +48,7 @@ async def on_message(message):
         embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif msg.startswith("!role"):
-        msg.replace("!role", "")
+        msg = msg.replace("!role", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
         else:
@@ -76,7 +76,7 @@ async def on_message(message):
     #Start of the useless commands
     
     elif msg.startswith("!exec"):
-        msg.replace("!exec", "")
+        msg = msg.replace("!exec", "")
         if msg == "":
             await message.channel.send(embed=sendError("Usage: `!exec <Linux command>`"))
         else:
@@ -89,29 +89,29 @@ async def on_message(message):
             else:
                 await message.channel.send(embed=sendError("Either the command is unknown, output is too long or there was a general error"))
     elif msg.startswith("!gif"):
-        msg.replace("!gif", "")
+        msg = msg.replace("!gif", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define a search query!"))
         else:
             t = rand(0, 11)
-            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(TOKEN_GIPHY, msg.replace(" ", "+"), t))
+            r = r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(TOKEN_GIPHY, msg = msg.replace(" ", "+"), t))
             data = json.loads(r.text)
             embed = discord.Embed()
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
             await message.channel.send(embed=embed)
     elif msg.startswith("!img"):
-        msg.replace("!img", "")
+        msg = msg.replace("!img", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define some text to use this!"))
         else:
-            r = requests.get("https://api.imgur.com/3/gallery/t/%s" %msg.replace(" ", "%20"), headers={"Authorization":"Client-ID %s" %TOKEN_IMGUR})
+            r = requests.get("https://api.imgur.com/3/gallery/t/%s" %msg = msg.replace(" ", "%20"), headers={"Authorization":"Client-ID %s" %TOKEN_IMGUR})
             data = json.loads(r.text)
             t = rand(0, len(data["data"]["items"]))
             embed = discord.Embed()
             embed.set_image(url=data["data"]["items"][t]["images"][0]["link"])
             await message.channel.send(embed=embed)
     elif msg.startswith("!insult"):
-        msg.replace("!insult", "")
+        msg = msg.replace("!insult", "")
         if msg == "":
             await message.channel.send(embed=sendError("You need to define the amount of insults to generate!"))
         else:
@@ -134,7 +134,7 @@ async def on_message(message):
         global a
         global q
         if a == "":
-            msg.replace("!q ", "").lower()
+            msg = msg.replace("!q ", "").lower()
             if msg == "g":
                 ask = rand(0, len(q))
                 qs = q[ask].split("||")
@@ -175,7 +175,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("You must answer the previous question to move on!"))
     elif msg.startswith("!a"):
         if a != "":
-            msg.replace("!a ", "")
+            msg = msg.replace("!a ", "")
             if msg.lower() == a.lower():
                 embed = discord.Embed(title="<:correct:548988506496696341> Correct!", description="", color=0x56ff67)
                 await message.channel.send(embed=embed)
