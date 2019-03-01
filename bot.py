@@ -12,7 +12,9 @@ TOKEN = config["bot_token"]
 TOKEN_GIPHY = config["giphy_token"]
 TOKEN_IMGUR = config["imgur_token"]
 
-q = open("General.txt", "r").read().split("\n")
+gen_q = open("General.txt", "r").read().split("\n")
+hard_q = open("Hardware.txt").read().split("\n")
+port_q = open("Ports.txt", "r").read().split("\n")
 a = ""
 
 def sendError(m):
@@ -132,12 +134,13 @@ async def on_message(message):
     
     elif msg.startswith("!q"):
         global a
-        global q
+        global gen_q
+        global port_q
         if a == "":
             msg = msg.replace("!q ", "").lower()
             if msg == "g":
-                ask = rand(0, len(q))
-                qs = q[ask].split("||")
+                ask = rand(0, len(gen_q))
+                qs = gen_q[ask].split("||")
                 if len(qs) == 6:
                     a = qs[len(qs) - 1]
                     embed = discord.Embed(title=qs[0], description="\n**A** %s\n\n**B** %s\n\n**C** %s\n\n**D** %s\n\n" %(qs[1], qs[2], qs[3], qs[4]), color=0x609dff)
@@ -149,12 +152,11 @@ async def on_message(message):
                     embed.set_thumbnail(url="https://www.emoji.co.uk/files/google-emojis/symbols-android/8046-black-question-mark-ornament.png")
                     await message.channel.send(embed=embed)
             elif msg == "h":
-                await message.channel.send(embed=sendError("There are no questions available for hardware yet. Maybe you could add some?"))
+                await message.channel.send(embed=sendError("Hardware questions are being added as we speak!"))
             elif msg == "n":
                 t = rand(0, 2)
                 if t == 0:
-                    cq = open("Ports.txt", "r").read().split("\n")
-                    rq = cq[rand(0, len(cq) + 1)]
+                    rq = port_q[rand(0, len(cq) + 1)]
                     rq = rq.split("||")
                     t = rand(0, 2)
                     if t == 0:
