@@ -94,7 +94,7 @@ async def on_message(message):
             await message.channel.send(embed=sendError("You need to define a search query!"))
         else:
             t = rand(0, 11)
-            r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(TOKEN_GIPHY, msg = msg.replace(" ", "+"), t))
+            r = requests.get("http://api.giphy.com/v1/gifs/translate?api_key=%s&s=%s&weirdness=%s" %(TOKEN_GIPHY, msg.replace(" ", "+"), t))
             data = json.loads(r.text)
             embed = discord.Embed()
             embed.set_image(url=data["data"]["images"]["downsized_large"]["url"])
