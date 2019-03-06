@@ -129,6 +129,13 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
             else:
                 await message.channel.send(embed=sendError("Insult count must be less than or equal to 10!"))
+    elif msg.startswith("!clap"):
+        msg = msg.replace("!clap", "")
+        if msg = "":
+            await message.channel.send(embed=sendError("You need to define some text to use this!"))
+        else:
+            msg = msg.replace(" ", " :clap: ")
+            await message.channel.send(msg)
     
     #End of the useless commands, start of the useful commands
     
