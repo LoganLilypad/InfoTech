@@ -6,6 +6,9 @@ import json
 from time import sleep
 from textwrap import wrap
 
+from commands_it import *
+from commands_misc *
+
 config = json.loads(open("../config.json").read())
 
 TOKEN = config["bot_token"]
@@ -16,7 +19,7 @@ gen_q = open("General.txt", "r").read().split("\n")
 hard_q = open("Hardware.txt").read().split("\n")
 port_q = open("Ports.txt", "r").read().split("\n")
 a = ""
-ball = ["Yes", "No", "Maybe not", "I don't know", "My senses are being gay, try again"]
+ball = ["Yes", "No", "Maybe not", "I don't know", "My senses are being weird, try again"]
 
 def sendError(m):
     embed = discord.Embed(title="Error", description=m, color=0xfc4444)
@@ -29,17 +32,8 @@ async def on_message(message):
     if message.author == client.user:
         return
     msg = message.content
-    if msg.startswith('!help'):
-        embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
-        embed.add_field(name="!help", value="Shows this menu", inline=False)
-        embed.add_field(name="!role <name> <session (1/3)>", value="Setup your name and session so you can talk in the Discord", inline=False)
-        embed.add_field(name="!q <type>", value="Asks a random question of the said category", inline=False)
-        embed.add_field(name="!a <answer>", value="Answer a question (case does not matter)", inline=False)
-        embed.add_field(name="!gif <query>", value="Search for a gif from Giphy", inline=False)
-        embed.add_field(name="!img <query>", value="Search for an image from Imgur", inline=False)
-        embed.add_field(name="!del <message ID>", value="Deletes a message by ID", inline=False)
-        embed.add_field(name="!contribute", value="Wanna help with this bot? Run this command", inline=False)
-        await message.channel.send(embed=embed)
+    if msg.startswith("!help"):
+        await message.channel.send(embed=command_help())
     elif msg.startswith("!del"):
         msg = msg.replace("!del", "")
         if msg == "":
