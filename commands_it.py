@@ -1,5 +1,9 @@
 import discord
 
+def sendError(m):
+    embed = discord.Embed(title="Error", description=m, color=0xfc4444)
+    return embed
+
 def command_help():
     embed = discord.Embed(title="Help", description="List of the available commands:\n", color=0x609dff)
     embed.add_field(name="!help", value="Shows this menu", inline=False)
