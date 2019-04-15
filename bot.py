@@ -34,41 +34,11 @@ async def on_message(message):
     msg = message.content
     if msg.startswith("!help"):
         await message.channel.send(embed=command_help())
-    elif msg.startswith("!del"):
-        msg = msg.replace("!del", "")
-        if msg == "":
-            await message.channel.send(embed=sendError("Usage: `!del <message ID>`"))
-        else:
-            r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %message.id, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
-            r = requests.delete("https://discordapp.com/api/v6/channels/487233747008094229/messages/%s" %msg, headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"})
     elif msg.startswith("!contribute"):
-        embed = discord.Embed(title="If you would like to help improve me, click here:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
+        embed = discord.Embed(title="If you would like to help improve me, visit the repo:", description="https://github.com/LoganLilypad/InfoTech\n*Don't worry, you dont need to code to help :)*", color=0x38ff5f)
         await message.channel.send(embed=embed)
     elif msg.startswith("!role"):
-        msg = msg.replace("!role", "")
-        if msg == "":
-            await message.channel.send(embed=sendError("Usage: `!role <name> <session (1/3)>`"))
-        else:
-            msg = msg.split(" ")
-            if len(msg) < 2:
-                await message.channel.send(emed=sendError("Usage: `!role <name> <session (1/3)>`"))
-            elif msg[2] == "1" or msg[2] == "3":
-                r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"nick":msg[1]}))
-                if msg[2] == "1":
-                    r2 = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"roles":["487250811496431617"]}))
-                elif msg[2] == "3":
-                    r2 = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"roles":["522884365177585686"]}))
-                if "Missing Permissions" in r.text:
-                    embed = discord.Embed(title=":x: Looks like I don't have permission to change your nickname :shrug:", description="", color=0xfc4444)
-                    await message.channel.send(embed=embed)
-                if "Missing Permissions" in r2.text:
-                    embed = discord.Embed(title=":x: Looks like I don't have permission to change your role :shrug:", description="", color=0xfc4444)
-                    await message.channel.send(embed=embed)
-                else:
-                    embed = discord.Embed(title="<:correct:548988506496696341> Success!", description="", color=0x56ff67)
-                    await message.channel.send(embed=embed)
-            else:
-                await message.channel.send(emed=sendError("Valid sessions are 1 and 3"))
+        await message.channel.send(embed=command_role(msg))
     
     #Start of the useless commands
     
