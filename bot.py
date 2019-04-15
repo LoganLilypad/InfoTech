@@ -124,7 +124,7 @@ async def on_message(message):
             elif msg == "n":
                 t = rand(0, 2)
                 if t == 0:
-                    rq = port_q[rand(0, len(cq) + 1)]
+                    rq = port_q[rand(0, len(port_q) + 1)]
                     rq = rq.split("||")
                     t = rand(0, 2)
                     if t == 0:
