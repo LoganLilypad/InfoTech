@@ -13,7 +13,7 @@ def commands_role(msg):
         #Really need to either delete this, or actually find how to assign roles/nicknames using Discord Rewrite; directly using the API is ugly
         msg = msg.split(" ")
         if len(msg) < 2:
-            return embed=sendError("Usage: `!role <name> <session (1/3)>`")
+            return sendError("Usage: `!role <name> <session (1/3)>`")
         elif msg[2] == "1" or msg[2] == "3":
             r = requests.patch("https://discordapp.com/api/v6/guilds/%s/members/%s" %(message.guild.id, message.author.id), headers={"Authorization":"Bot %s" %TOKEN,"Content-Type":"application/json"}, data=json.dumps({"nick":msg[1]}))
             if msg[2] == "1":
