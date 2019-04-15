@@ -16,14 +16,10 @@ TOKEN_GIPHY = config["giphy_token"]
 TOKEN_IMGUR = config["imgur_token"]
 
 gen_q = open("General.txt", "r").read().split("\n")
-hard_q = open("Hardware.txt").read().split("\n")
+hard_q = open("Hardware.txt", "r").read().split("\n")
 port_q = open("Ports.txt", "r").read().split("\n")
 a = ""
 ball = ["Yes", "No", "Maybe not", "I don't know", "My senses are being weird, try again"]
-
-def sendError(m):
-    embed = discord.Embed(title="Error", description=m, color=0xfc4444)
-    return embed
 
 client = discord.Client()
 
