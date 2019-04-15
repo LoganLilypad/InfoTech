@@ -1,5 +1,5 @@
 # InfoTech
 
-KCTC's Discord bot \*woo\*
+KCTC's IT Discord bot \*woo\*
 
-Feel free to make any changes to the bot and its files. The bot files get updated every minute to the server.
+Mainly designed for studying for the class, also comes with a few fun commands
