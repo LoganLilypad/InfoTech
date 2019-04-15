@@ -7,7 +7,7 @@ from time import sleep
 from textwrap import wrap
 
 from commands_it import *
-from commands_misc *
+from commands_misc import *
 
 config = json.loads(open("../config.json").read())
 
