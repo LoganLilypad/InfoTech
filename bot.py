@@ -16,6 +16,7 @@ gen_q = open("General.txt", "r").read().split("\n")
 hard_q = open("Hardware.txt").read().split("\n")
 port_q = open("Ports.txt", "r").read().split("\n")
 a = ""
+ball = ["Yes", "No", "Maybe not", "I don't know", "My senses are being gay, try again"]
 
 def sendError(m):
     embed = discord.Embed(title="Error", description=m, color=0xfc4444)
